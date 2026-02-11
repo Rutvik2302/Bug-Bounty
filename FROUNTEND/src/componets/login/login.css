@@ -1,0 +1,121 @@
+.main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.login-container {
+    border: 1px solid #ddd;
+    background-color: white;
+    width: 100%;  
+    max-width: 400px;
+    padding: 30px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.label {
+    display: block;
+    padding: 3px;
+    margin-bottom: 5px;
+    color: var(--secondary-font-color);
+    font-weight: 500;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--secondary-font-color);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--primary-btn-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.login-btn {
+    width: 100%;
+    background-color: var(--primary-btn-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.login-btn:hover {
+    opacity: 0.9;
+}
+
+/* Sign Up Section */
+.signup-section {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.signup-text {
+    font-size: 14px;
+    color: var(--secondary-font-color);
+}
+
+.signup-link {
+    color: var(--primary-btn-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.signup-link:hover {
+    color: #5568d3;
+    text-decoration: underline;
+}
+
+
+/* Responsive css */
+@media (max-width: 600px) {
+  .main {
+    padding: 15px;
+  }
+  
+  .login-container {
+    padding: 20px;
+  }
+  
+  .login-title {
+    font-size: 1.3rem;
+  }
+  
+  .input {
+    padding: 10px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .login-container {
+    max-width: 450px;
+    padding: 35px;
+  }
+}

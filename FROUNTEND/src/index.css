@@ -1,4 +1,18 @@
+:root{
+  --background-color : #fafafa;
+  --primary-font-color : #4F3432;
+  --secondary-font-color : #7A5653;
+  --primary-btn-color : #210404;
+  --secondary-btn-color : #791f1f;
+  --primary-btn-hover-color : #4c2f2f;
+  --secondary-btn-hover-color : #b07474;
+  --border-radius : 4px;
+  --box-sizing:border-box;
+}
+
 *{
   margin: 0;
   padding: 0;
+  background-color: var(--background-color);
 }
+
