@@ -1,35 +1,37 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState , useEffect } from "react";
+import { useNavigate  } from "react-router-dom";
 import "./signup.css";
+import axios from "axios";
 
 const Signup = () => {
   const navigate = useNavigate();
-  
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+
+    if (user && token) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    console.log("Signup form submitted!");
-    console.log("Name:", name);
-    console.log("Email:", email);
-    
 
     setError("");
     setSuccess("");
-    
-    // Validations 
 
+    // validations
     if (!name || !email || !password || !confirmPassword) {
       setError("Please fill in all fields");
       return;
     }
-    
 
     if (name.trim().length < 2) {
       setError("Name must be at least 2 characters long");
@@ -52,37 +54,35 @@ const Signup = () => {
       return;
     }
 
-    const existingUsers = JSON.parse(localStorage.getItem("users") || "[]");
-    const userExists = existingUsers.find(user => user.email === email);
-    
-    if (userExists) {
-      setError("User with this email already exists");
-      return;
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/user/signup`,
+        {
+          name,
+          email,
+          password,
+        },
+      );
+
+      setSuccess("Account created successfully! Redirecting to login...");
+
+      setName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
+    } catch (err) {
+      console.error(err);
+
+      if (err.response && err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+        setError("Signup failed. Please try again.");
+      }
     }
-    
-    const newUser = {
-      name: name,
-      email: email,
-      password: password, 
-      createdAt: new Date().toISOString()
-    };
-    
-
-    existingUsers.push(newUser);
-    localStorage.setItem("users", JSON.stringify(existingUsers));
-    
-    setSuccess("Account created successfully! Redirecting to login...");
-    
-
-    setName("");
-    setEmail("");
-    setPassword("");
-    setConfirmPassword("");
-    
-
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
   };
 
   return (
@@ -92,19 +92,11 @@ const Signup = () => {
 
         <form onSubmit={handleSubmit}>
           {/* Error Message */}
-          {error && (
-            <div className="error-message">
-              {error}
-            </div>
-          )}
-          
+          {error && <div className="error-message">{error}</div>}
+
           {/* Success Message */}
-          {success && (
-            <div className="success-message">
-              {success}
-            </div>
-          )}
-          
+          {success && <div className="success-message">{success}</div>}
+
           <div>
             <label className="label">Name :</label>
             <input
@@ -161,10 +153,7 @@ const Signup = () => {
         <div className="login-section">
           <p className="login-text">
             Already have an account?{" "}
-            <span 
-              onClick={() => navigate("/")} 
-              className="login-link"
-            >
+            <span onClick={() => navigate("/")} className="login-link">
               Login
             </span>
           </p>

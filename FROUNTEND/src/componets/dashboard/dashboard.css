@@ -1,0 +1,218 @@
+/* --- Color Palette --- */
+:root {
+  --header-bg: #1f2937;
+  --primary-blue: #3b82f6;
+  --primary-blue-hover: #2563eb;
+  --success-green: #22c55e;
+  --success-green-hover: #16a34a;
+  --danger-red: #ef4444;
+  --bg-light: #f8fafc;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+
+  /* Status Colors */
+  --status-open-bg: #dcfce7;
+  --status-open-text: #166534;
+  --status-review-bg: #fef9c3;
+  --status-review-text: #854d0e;
+  --status-closed-bg: #fee2e2;
+  --status-closed-text: #991b1b;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-light);
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* --- Main Layout --- */
+.dashboard-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.dashboard-header {
+  margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* --- Controls & Filter --- */
+.controls-section {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.filter-select {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: white;
+  min-width: 150px;
+}
+
+/* --- Bug Cards (Box Type) --- */
+.bug-list {
+  display: grid;
+  gap: 16px;
+}
+
+.bug-card {
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.bug-card:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.bug-info h4 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.bug-info p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.bug-meta {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+  align-items: center;
+}
+
+.bug-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* --- Status Badges --- */
+.status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.open {
+  background: var(--status-open-bg);
+  color: var(--status-open-text);
+}
+
+.status.in-review {
+  background: var(--status-review-bg);
+  color: var(--status-review-text);
+}
+
+.status.closed {
+  background: var(--status-closed-bg);
+  color: var(--status-closed-text);
+}
+
+.view-btn {
+  padding: 10px 20px;
+  background: var(--primary-blue);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.create-btn {
+  background: var(--success-green);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* --- Modals --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.cancel-btn {
+  background: #f1f5f9;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.submit-btn {
+  background: var(--primary-blue);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+}
