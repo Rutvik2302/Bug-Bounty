@@ -1,22 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const Bug = require("../models/bugmodels");
+const bugController = require("../controllers/BugController");
+const submissionController = require("../controllers/SubmissionController");
+const isLoggedIn = require("../middleware/isLoggedIn");
 
-router.post("/create", async (req, res) => {
-  console.log("Body found:", req.body);
-  let { title, description, bountyAmount, createdBy } = req.body;
-  try {
-    const newbug = new Bug({
-      title,
-      description,
-      bountyAmount,
-      createdBy,
-    });
-    await newbug.save();
-    res.send({ message: "Bug created successfully", bug: newbug });
-  } catch (err) {
-    res.send({ message: "Error creating Bug", error: err.message });
-  }
-});
+
+router.get("/all", bugController.getAllBugs);
+router.get("/:id", bugController.getBugById);
+router.post("/create", isLoggedIn, bugController.createBug);
+router.post("/submit", isLoggedIn, submissionController.submitSolution);
+router.post("/approve/:id", isLoggedIn, submissionController.approveSubmission);
 
 module.exports = router;

@@ -1,63 +1,139 @@
-.header {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    background: #1f2937;
-    color: white;
+/* variables */
+:root {
+    --bg-dark: #1f2937;
+    --text-primary: #ffffff;
+    --text-secondary: #cbd5e1;
+    --accent-blue: #3b82f6;
+    --danger-red: #ef4444;
+    --border-light: rgba(255, 255, 255, 0.08);
+}
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 12px 30px;
+/* Globle css */
+* {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-/* IMPORTANT: remove background from inner sections */
-.logo,
-.nav,
-.user-section {
-    background: transparent;
-    /* 🔥 removes white boxes */
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
 }
 
-/* logo */
-.logo {
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
+
+.bb-header *,
+.bb-header *::before,
+.bb-header *::after {
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
-/* nav */
-.nav {
-    display: flex;
-    gap: 20px;
-}
 
-.nav button {
-    background: transparent;
+/* button */
+button {
     border: none;
-    color: white;
+    outline: none;
+    background: transparent;
     cursor: pointer;
-    font-size: 14px;
+    font-family: inherit;
 }
 
-.nav button:hover {
-    opacity: 0.8;
-}
 
-/* right side */
-.user-section {
+/* main container  */
+.bb-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    height: 64px;
+    padding: 0 28px;
+
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
+
+    background: var(--bg-dark) !important;
+    border-bottom: 1px solid var(--border-light);
 }
 
-.logout-btn {
-  background: #ef4444;
-  border: none;
-  padding: 6px 12px;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+
+/* logo */
+.bb-logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+
+.bb-nav {
+    display: flex;
+    gap: 28px;
+}
+
+.bb-nav-link {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+}
+
+.bb-nav-link:hover {
+    color: var(--text-primary);
+}
+
+/* user area box  */
+.bb-user-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.bb-user-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.bb-user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.bb-user-role {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+}
+
+
+/* Logout btn  */
+
+.bb-logout-btn {
+    background: var(--danger-red) !important;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.bb-logout-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+
+/* RESPONSIVE*/
+@media (max-width: 768px) {
+    .bb-nav {
+        display: none;
+    }
 }
