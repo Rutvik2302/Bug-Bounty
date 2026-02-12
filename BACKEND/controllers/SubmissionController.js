@@ -8,6 +8,14 @@ module.exports.submitSolution = async (req, res) => {
 
     const bug = await Bug.findById(bugId);
     if (!bug) return res.status(404).json({ message: "Bug not found" });
+
+    // VALIDATION: Prevent creator from submitting to their own bug
+    if (bug.createdBy.toString() === req.user._id.toString()) {
+      return res
+        .status(400)
+        .json({ message: "You cannot submit a solution to your own bug." });
+    }
+
     if (bug.status === "Closed")
       return res.status(400).json({ message: "Bug is already closed" });
 
@@ -44,26 +52,27 @@ module.exports.approveSubmission = async (req, res) => {
 
     const bug = submission.bug;
 
-    // Authorization: Only the bug creator can approve
     if (bug.createdBy.toString() !== req.user._id.toString()) {
       return res
         .status(403)
         .json({ message: "Not authorized to approve for this bug" });
     }
 
-    // Update submission status
     submission.status = "Approved";
     await submission.save();
 
-    // Update bug status
+    // Reject all other submissions for this bug
+    await Submission.updateMany(
+      { bug: bug._id, _id: { $ne: submission._id } },
+      { status: "Rejected" },
+    );
+
     bug.status = "Closed";
     bug.winner = submission.submittedBy._id;
     bug.rewarded = true;
     await bug.save();
 
-    // Update winner rewards
     const winner = await User.findById(submission.submittedBy._id);
-    // Note: Checking model field name (Rewards in usermodel.js)
     winner.Rewards = (winner.Rewards || 0) + bug.bountyAmount;
     winner.wonBugs.push(bug._id);
     await winner.save();
