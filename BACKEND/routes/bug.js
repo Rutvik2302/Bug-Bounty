@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bugController = require("../controllers/BugController");
 const submissionController = require("../controllers/SubmissionController");
-const isLoggedIn = require("../middleware/isLoggedIn");
+const isLoggedIn = require("../middlewares/isLoggedIn");
 
 
 router.get("/all", bugController.getAllBugs);
