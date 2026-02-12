@@ -1,4 +1,4 @@
-const userModel = require("../models/userModel");
+const userModel = require("../models/usermodel");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const generateToken = require("../utils/genrateToken");
@@ -65,6 +65,7 @@ module.exports.loginUser = async (req, res) => {
             name: user.name,
             email: user.email,
           },
+          token,
         });
       } else {
         res.status(500).json({ message: "Error in logging in" });

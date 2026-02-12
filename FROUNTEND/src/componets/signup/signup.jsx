@@ -1,10 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState , useEffect } from "react";
+import { useNavigate  } from "react-router-dom";
 import "./signup.css";
 import axios from "axios";
 
 const Signup = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+
+    if (user && token) {
+      navigate("/dashboard");
+    }
+  }, [navigate]);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
