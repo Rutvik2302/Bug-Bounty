@@ -1,14 +1,14 @@
 :root {
-    --bg-dark: #1f2937;
-    --text-primary: #040404;
-    --text-secondary: #6596d1;
+    --bg-dark: #eaecee;
+    --text-primary: #000000;
+    --text-secondary: #3f67ad;
     --accent-blue: #3b82f6;
-    --danger-red: #c67575;
+    --danger-red: #ef4444;
     --success-green: #22c55e;
     --border-light: rgba(255, 255, 255, 0.08);
 }
 
-
+/* reset */
 .bb-header * {
     margin: 0;
     padding: 0;
@@ -17,11 +17,13 @@
 
 .bb-header button {
     border: none;
-    background: none;
     cursor: pointer;
     font-family: inherit;
 }
 
+/* ============================= */
+/* HEADER */
+/* ============================= */
 .bb-header {
     position: sticky;
     top: 0;
@@ -35,7 +37,8 @@
     align-items: center;
     justify-content: space-between;
 
-
+    background: var(--bg-dark);
+    /* ⭐ IMPORTANT FIX */
     color: var(--text-primary);
     border-bottom: 1px solid var(--border-light);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
@@ -50,8 +53,8 @@
     gap: 12px;
     font-size: 20px;
     font-weight: 700;
-    color: var(--text-primary);
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .bb-logo-area span:first-child {
@@ -73,6 +76,7 @@
     font-weight: 600;
     padding: 8px 0;
     transition: 0.25s;
+    background: transparent;
 }
 
 .bb-nav-link:hover {
@@ -88,20 +92,32 @@
     gap: 18px;
 }
 
-/* post bug button */
+/* ============================= */
+/* ⭐ CREATE BUTTON FIXED */
+/* ============================= */
 .create-btn {
-     background: var(--danger-red);
-    color: rgb(0, 0, 0);
-    padding: 8px 16px;
-    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--accent-blue);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
     font-weight: 600;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: 0.2s ease;
 }
 
 .create-btn:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    background: #2563eb;
 }
 
-/* user info */
+/* ============================= */
+/* USER INFO */
+/* ============================= */
 .bb-user-text {
     display: flex;
     flex-direction: column;
@@ -111,7 +127,6 @@
 .bb-user-name {
     font-size: 14px;
     font-weight: 600;
-    color: rgb(0, 0, 0);
 }
 
 .bb-user-role {
@@ -121,17 +136,20 @@
     letter-spacing: 1px;
 }
 
-/* logout */
+/* ============================= */
+/* LOGOUT */
+/* ============================= */
 .bb-logout-btn {
     background: var(--danger-red);
-    color: rgb(0, 0, 0);
+    color: white;
     padding: 8px 16px;
     border-radius: 6px;
     font-weight: 600;
 }
 
-
+/* ============================= */
 /* RESPONSIVE */
+/* ============================= */
 @media (max-width: 900px) {
     .bb-nav {
         display: none;
