@@ -80,3 +80,18 @@ module.exports.logoutUser = (req, res) => {
   res.cookie("token", "", { expires: new Date(0) }); // Clear the cookie
   res.status(200).json({ message: "Logged out successfully" });
 };
+
+module.exports.updateProfile = async (req, res) => {
+  try {
+    const { name, email } = req.body;
+    const user = await userModel.findByIdAndUpdate(
+      req.user._id,
+      { name, email },
+      { new: true }
+    ).select("-password");
+
+    res.status(200).json({ message: "Profile updated successfully", user });
+  } catch (err) {
+    res.status(500).json({ message: "Error updating profile" });
+  }
+};

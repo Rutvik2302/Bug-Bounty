@@ -1,98 +1,107 @@
-/* variables */
 :root {
     --bg-dark: #1f2937;
-    --text-primary: #ffffff;
-    --text-secondary: #cbd5e1;
+    --text-primary: #040404;
+    --text-secondary: #6596d1;
     --accent-blue: #3b82f6;
-    --danger-red: #ef4444;
+    --danger-red: #c67575;
+    --success-green: #22c55e;
     --border-light: rgba(255, 255, 255, 0.08);
 }
 
-/* Globle css */
-* {
+
+.bb-header * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-}
-
-
-.bb-header *,
-.bb-header *::before,
-.bb-header *::after {
-    background: transparent !important;
-    box-shadow: none !important;
-}
-
-
-/* button */
-button {
+.bb-header button {
     border: none;
-    outline: none;
-    background: transparent;
+    background: none;
     cursor: pointer;
     font-family: inherit;
 }
 
-
-/* main container  */
 .bb-header {
     position: sticky;
     top: 0;
     z-index: 1000;
 
-    height: 64px;
-    padding: 0 28px;
+    height: 70px;
+    width: 100%;
+    padding: 0 40px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    background: var(--bg-dark) !important;
+
+    color: var(--text-primary);
     border-bottom: 1px solid var(--border-light);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
 }
 
-
-/* logo */
+/* ============================= */
+/* LEFT LOGO */
+/* ============================= */
 .bb-logo-area {
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 18px;
-    font-weight: 600;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 700;
     color: var(--text-primary);
-    cursor: pointer;
+    white-space: nowrap;
 }
 
+.bb-logo-area span:first-child {
+    font-size: 24px;
+}
 
+/* ============================= */
+/* CENTER NAV */
+/* ============================= */
 .bb-nav {
     display: flex;
-    gap: 28px;
+    align-items: center;
+    gap: 32px;
 }
 
 .bb-nav-link {
     color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 500;
-    padding: 4px 0;
-    transition: color 0.2s ease;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 0;
+    transition: 0.25s;
 }
 
 .bb-nav-link:hover {
-    color: var(--text-primary);
+    color: var(--accent-blue);
 }
 
-/* user area box  */
+/* ============================= */
+/* RIGHT SIDE */
+/* ============================= */
 .bb-user-area {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 18px;
 }
 
+/* post bug button */
+.create-btn {
+     background: var(--danger-red);
+    color: rgb(0, 0, 0);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.create-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* user info */
 .bb-user-text {
     display: flex;
     flex-direction: column;
@@ -102,38 +111,33 @@ button {
 .bb-user-name {
     font-size: 14px;
     font-weight: 600;
-    color: var(--text-primary);
+    color: rgb(0, 0, 0);
 }
 
 .bb-user-role {
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 800;
     color: var(--accent-blue);
+    letter-spacing: 1px;
 }
 
-
-/* Logout btn  */
-
+/* logout */
 .bb-logout-btn {
-    background: var(--danger-red) !important;
-    color: white;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: 0.2s ease;
-}
-
-.bb-logout-btn:hover {
-    opacity: 0.9;
-    transform: translateY(-1px);
+    background: var(--danger-red);
+    color: rgb(0, 0, 0);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
 }
 
 
-/* RESPONSIVE*/
-@media (max-width: 768px) {
+/* RESPONSIVE */
+@media (max-width: 900px) {
     .bb-nav {
+        display: none;
+    }
+
+    .bb-user-text {
         display: none;
     }
 }
