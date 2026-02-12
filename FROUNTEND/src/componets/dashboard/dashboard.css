@@ -1,0 +1,295 @@
+/* --- Color Palette --- */
+:root {
+  --header-bg: #1f2937;
+  --primary-blue: #007bff;
+  --primary-blue-hover: #0069d9;
+  --success-green: #22c55e;
+  --success-green-hover: #1da850;
+  --danger-red: #ef4444;
+  --bg-light: #f4f7f6;
+  --card-bg: #ffffff;
+  --border-color: #ddd;
+  --text-main: #333;
+  --text-muted: #666;
+
+  /* Status Colors */
+  --status-open-bg: #e6ffe6;
+  --status-open-text: green;
+  --status-review-bg: #fff3cd;
+  --status-review-text: #856404;
+  --status-closed-bg: #f8d7da;
+  --status-closed-text: #721c24;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-light);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+}
+
+/* --- Header --- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--header-bg);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.nav-btn.active {
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  opacity: 1;
+}
+
+.logout-btn {
+  background: var(--danger-red);
+  border: none;
+  padding: 6px 15px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+/* --- Main Layout --- */
+.dashboard-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.dashboard-header h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* --- Controls & Filter --- */
+.controls-section {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+  padding: 15px;
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  outline: none;
+}
+
+.filter-select {
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background: white;
+  outline: none;
+}
+
+/* --- Bug Cards (Box Type) --- */
+.bug-list {
+  display: grid;
+  gap: 20px;
+}
+
+.bug-card {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.bug-card:hover {
+  transform: translateY(-2px);
+}
+
+.bug-info h4 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #222;
+}
+
+.bug-info p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.bug-meta {
+  display: flex;
+  gap: 15px;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.bug-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* --- Status Badges --- */
+.status {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.open {
+  background: var(--status-open-bg);
+  color: var(--status-open-text);
+}
+
+.status.in-review {
+  background: var(--status-review-bg);
+  color: var(--status-review-text);
+}
+
+.status.closed {
+  background: var(--status-closed-bg);
+  color: var(--status-closed-text);
+}
+
+.view-btn {
+  padding: 8px 16px;
+  border: none;
+  background: var(--primary-blue);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.view-btn:hover {
+  background: var(--primary-blue-hover);
+}
+
+.create-btn {
+  background: var(--success-green);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.create-btn:hover {
+  background: var(--success-green-hover);
+}
+
+/* --- Modals --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  background: white;
+  width: 450px;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancel-btn {
+  background: #eee;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.submit-btn {
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
